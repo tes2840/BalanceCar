@@ -1,69 +1,39 @@
+/**
+ * @file InvertedPendulumControl.cpp
+ */
+
 #include "InvertedPendulumControl.h"
 
-//情報キー
-const char *KEY_TIME = "time";
-const char *KEY_POWER_R = "power_R";
-const char *KEY_POWER_L = "power_L";
-const char *KEY_GYRO_OFFSET_X ="gyro_offset_X";
-const char *KEY_GYRO_OFFSET_Y ="gyro_offset_Y";
-const char *KEY_GYRO_OFFSET_Z ="gyro_offset_Z";
-const char *KEY_ACC_OFFSET_X ="acc_offset_x";
-const char *KEY_GYRO_X ="gyro_X";
-const char *KEY_GYRO_Y ="gyro_Y";
-const char *KEY_GYRO_Z ="gyro_Z";
-const char *KEY_ACC_X ="acc_X";
-const char *KEY_ACC_Z ="acc_Z";
-const char *KEY_AVE_ACC_Z="aveAccZ";
-const char *KEY_AVE_ABS_OMG="aveAbsOmg";
-
-//情報取得用関数
-typedef float (InvertedPendulumControl::*p_func)(void);
-struct info_struct{
-  const char *id;   //id
-  p_func func_ptr;  //idの情報を取得する関数のポインタ
-};
-
-info_struct info_table[] = {
-  { KEY_TIME,           &InvertedPendulumControl::GetTime },
-  { KEY_POWER_R,        &InvertedPendulumControl::GetpowerR },
-  { KEY_POWER_L,        &InvertedPendulumControl::GetpowerL },
-  { KEY_GYRO_OFFSET_X,  &InvertedPendulumControl::GetGyroOffsetX },
-  { KEY_GYRO_OFFSET_Y,  &InvertedPendulumControl::GetGyroOffsetY },
-  { KEY_GYRO_OFFSET_Z,  &InvertedPendulumControl::GetGyroOffsetZ },
-  { KEY_ACC_OFFSET_X,   &InvertedPendulumControl::GetAccOffsetX },
-  { KEY_GYRO_X,         &InvertedPendulumControl::GetGyroX },
-  { KEY_GYRO_Y,         &InvertedPendulumControl::GetGyroY },
-  { KEY_GYRO_Z,         &InvertedPendulumControl::GetGyroZ },
-  { KEY_ACC_X,          &InvertedPendulumControl::GetAccX },
-  { KEY_ACC_Z,          &InvertedPendulumControl::GetAccY },
-  { KEY_AVE_ACC_Z,      &InvertedPendulumControl::GetAveAccZ },
-  { KEY_AVE_ABS_OMG,    &InvertedPendulumControl::GetAveAbsOmg }
-};
-const unsigned int info_table_size = sizeof(info_table) / sizeof(info_table[0]);
-
-InvertedPendulumControl::InvertedPendulumControl(){
-#ifdef _DEBUG
-  printf("Call Constuctor InvertedPendulumControl Class\n");
-#endif
-  
+/**
+ * @fn      InvertedPendulumControl::InvertedPendulumControl(){
+ * @brief   InvertedPendulumControlのコンストラクタ
+ * @param   (void) void
+ * @return  void
+ */
+InvertedPendulumControl::InvertedPendulumControl(){  
   imuInit();
   resetMotor();
   resetPara();
   resetVar();
   calib1();
-  #ifdef DEBUG
-  debugSetup();
-  #else
   setMode(false);
-  #endif
 }
 
+/**
+ * @fn      InvertedPendulumControl::~InvertedPendulumControl(){
+ * @brief   InvertedPendulumControlのデストラクタ
+ * @param   (void) void
+ * @return  void
+ */
 InvertedPendulumControl::~InvertedPendulumControl(){
-#ifdef _DEBUG
-  printf("Call Destructor InvertedPendulumControl Class\n");
-#endif
 }
 
+/**
+ * @fn      InvertedPendulumControl::run(){
+ * @brief   InvertedPendulumControlのメイン処理
+ * @param   (void) void
+ * @return  void
+ */
 void InvertedPendulumControl::run(){
   checkButtonP(); //Powerボタンの確認
   getGyro();      //ジャイロセンサから角速度を取得し角度を推定する
@@ -107,11 +77,12 @@ void InvertedPendulumControl::run(){
 }
 
 /**
- * @brief ジャイロセンサ(Y軸)のオフセットを算出する
+ * @fn      void InvertedPendulumControl::calib1()
+ * @brief   ジャイロセンサ(Y軸)のオフセットを算出する
  * @details ジャイロセンサは静止状態でも変動するバイアスが乗る(ドリフト)
  *          そのバイアスを取り除くためジャイロセンサーの値のオフセットを算出する(一定時間の平均値)
- * @param (void) void
- * @return void
+ * @param   (void) void
+ * @return  void
  */
 void InvertedPendulumControl::calib1() {
   calDelay(30);
@@ -135,6 +106,7 @@ void InvertedPendulumControl::calib1() {
 }
 
 /**
+ * @fn void InvertedPendulumControl::calib2()
  * @brief 倒立状態でのジャイロセンサ(Z軸)、加速度センサ(X軸)のオフセットを算出する
  * @details ジャイロセンサ、加速度センサは静止状態でも変動するバイアスが乗る(ドリフト)
  *          そのバイアスを取り除くためオフセットを算出する(一定時間の平均値)
@@ -170,6 +142,7 @@ void InvertedPendulumControl::calib2() {
 }
 
 /**
+ * @fn void InvertedPendulumControl::checkButtonP()
  * @brief Powerボタン押下を確認しモードの切り替えを行う
  * @details short pushではcalib1を開始
  *          long push(1.5s)ではでもモードへ切り替え
@@ -190,6 +163,7 @@ void InvertedPendulumControl::calDelay(int n) {
 }
 
 /**
+ * @fn void InvertedPendulumControl::setMode(bool inc)
  * @brief Mode選択
  * @param (inc) モード(false:倒立制御,true:デモ)
  * @return void
@@ -203,6 +177,7 @@ void InvertedPendulumControl::setMode(bool inc) {
 }
 
 /**
+ * @fn void InvertedPendulumControl::startDemo()
  * @brief デモモードの開始
  * @details その場で回転する
  * @param (void) void
@@ -211,10 +186,11 @@ void InvertedPendulumControl::setMode(bool inc) {
 void InvertedPendulumControl::startDemo() {
   moveRate=1.0;
   spinContinuous=true;
-  spinStep=-40.0*clk;
+  spinStep=-Kspin*clk;
 }
 
 /**
+ * @fn void InvertedPendulumControl::resetPara()
  * @brief パラメータの初期化
  * @param (void) void
  * @return void
@@ -226,6 +202,7 @@ void InvertedPendulumControl::resetPara() {
   Kyaw=4.0;
   Kdst=85.0;
   Kspd=2.7;
+  Kspin=10.0;
   mechFactL=0.45;
   mechFactR=0.45;
   punchPwr=20;    //サーボーモーター初動の動き出しが早くなるような操作量のオフセット値
@@ -237,6 +214,7 @@ void InvertedPendulumControl::resetPara() {
 }
 
 /**
+ * @fn void InvertedPendulumControl::getGyro()
  * @brief ジャイロセンサから角速度を取得し角度を推定する
  * @param (void) void
  * @return void
@@ -262,6 +240,7 @@ void InvertedPendulumControl::getGyro() {
 }
 
 /**
+ * @fn void InvertedPendulumControl::readGyro()
  * @brief ジャイロセンサ、加速度センサから値を取得する
  *        加速度センサ：ローカル座標からグローバル座標に変換している(M5StickCが地面と垂直状態のとき上方向をz,全身方向をx)
  * @param (void) void
@@ -279,11 +258,15 @@ void InvertedPendulumControl::readGyro() {
 }
 
 /**
+ * @fn void InvertedPendulumControl::drive()
  * @brief モーター制御
  * @param (void) void
  * @return void
  */
 void InvertedPendulumControl::drive() {
+  float spinFact=1.0;
+  const float moveStep=0.2*clk;
+  float yawPower=0.0;
   
   //旋回するか確認
   if (abs(moveRate)>0.1){
@@ -333,7 +316,7 @@ void InvertedPendulumControl::drive() {
 
   //左モーターの制御処理
   //mechの実力に合わせて出力を調整(mechFactL)
-  ipowerL = (int16_t) constrain(powerL * mechFactL, -maxPwr, maxPwr);
+  int16_t ipowerL = (int16_t) constrain(powerL * mechFactL, -maxPwr, maxPwr);
   if (ipowerL > 0) { 
     //前進
     if (motorLdir == 1){//前回からすでに前進状態
@@ -376,7 +359,7 @@ void InvertedPendulumControl::drive() {
   }
 
   //右モーターの制御処理
-  ipowerR = (int16_t) constrain(powerR * mechFactR, -maxPwr, maxPwr);
+  int16_t ipowerR = (int16_t) constrain(powerR * mechFactR, -maxPwr, maxPwr);
   if (ipowerR > 0) {
     if (motorRdir == 1) punchCountR = constrain(++punchCountR, 0, 100);
     else punchCountR=0;
@@ -402,6 +385,7 @@ void InvertedPendulumControl::drive() {
 }
 
 /**
+ * @fn void InvertedPendulumControl::drvMotorL(int16_t pwm)
  * @brief MotorLを回転させる(回転角は-127~127の範囲内に制限する)
  * @param (pwm) 回転角
  * @return void
@@ -420,6 +404,7 @@ void InvertedPendulumControl::drvMotorR(int16_t pwm) {
 }
 
 /**
+ * @fn void InvertedPendulumControl::drvMotor(byte ch, int8_t sp)
  * @brief I2C通信でモータドライバ(L9110S)にデータを転送する
  * @param (ch) モーターの番号
  * @param (sp) 回転角
@@ -433,6 +418,7 @@ void InvertedPendulumControl::drvMotor(byte ch, int8_t sp) {
 }
 
 /**
+ * @fn void InvertedPendulumControl::resetMotor()
  * @brief モーターの初期化
  * @param (void) void
  * @return void
@@ -444,6 +430,7 @@ void InvertedPendulumControl::resetMotor() {
 }
 
 /**
+ * @fn void InvertedPendulumControl::resetVar() 
  * @brief 内部ステータスの初期化
  * @param (void) void
  * @return void
@@ -465,17 +452,21 @@ void InvertedPendulumControl::resetVar() {
 }
 
 void InvertedPendulumControl::sendStatus () {
+#if _DEBUG
   Serial.print(millis()-time0);
   Serial.print(" stand="); Serial.print(standing);
   Serial.print(" accX="); Serial.print(accXdata);
   Serial.print(" power="); Serial.print(power);
   Serial.print(" ang=");Serial.print(varAng);
+  Serial.print(" Kang=");Serial.print(Kang);
   Serial.print(", "); 
   Serial.print(millis()-time0);
   Serial.println();
+#endif
 }
 
 /**
+ * @fn void InvertedPendulumControl::imuInit()
  * @brief IMU(SH200Q）の初期化
  * @param (void) void
  * @return void
@@ -491,32 +482,164 @@ void InvertedPendulumControl::imuInit() {
 }
 
 /**
+ * @fn void InvertedPendulumControl::dispBatVolt() 
  * @brief DisplayにM5StickCの電圧を表示
  * @param (void) void
  * @return void
  */
 void InvertedPendulumControl::dispBatVolt() {
   M5.Lcd.setCursor(5, LCDV_MID);
-  vBatt= M5.Axp.GetBatVoltage();
+  float vBatt= M5.Axp.GetBatVoltage();
   M5.Lcd.printf("%4.2fv ", vBatt);
 }
 
 //情報取得用関数
-float InvertedPendulumControl::GetTime(){return float(float(millis())/1000);}  // 秒単位で経過時間を返す
-float InvertedPendulumControl::GetpowerR(){return powerR;}
-float InvertedPendulumControl::GetpowerL(){return powerL;}
-float InvertedPendulumControl::GetGyroOffsetX(){return gyroXoffset;}
-float InvertedPendulumControl::GetGyroOffsetY(){return gyroYoffset;}
-float InvertedPendulumControl::GetGyroOffsetZ(){return gyroZoffset;}
-float InvertedPendulumControl::GetAccOffsetX(){return accXoffset;}
-float InvertedPendulumControl::GetGyroX(){return gyroXdata;}
-float InvertedPendulumControl::GetGyroY(){return gyroYdata;}
-float InvertedPendulumControl::GetGyroZ(){return gyroZdata;}
-float InvertedPendulumControl::GetAccX(){return accXdata;}
-float InvertedPendulumControl::GetAccY(){return accZdata;}
-float InvertedPendulumControl::GetAveAccZ(){return aveAccZ;}
-float InvertedPendulumControl::GetAveAbsOmg(){return aveAbsOmg;}
+/**
+ * @fn InvertedPendulumControl::GetTime()
+ * @brief 起動開始からの時間[s]を取得
+ * @param (void) void
+ * @return float
+ */
+float InvertedPendulumControl::GetTime(){
+  return float(float(millis())/1000);
+}
 
+/**
+ * @fn InvertedPendulumControl::GetpowerR()
+ * @brief MotorRの駆動力を取得
+ * @param (void) void
+ * @return float
+ */
+float InvertedPendulumControl::GetpowerR(){
+  return powerR;
+}
+
+/**
+ * @fn InvertedPendulumControl::GetpowerL()
+ * @brief MotorLの駆動力を取得
+ * @param (void) void
+ * @return float
+ */
+float InvertedPendulumControl::GetpowerL(){
+  return powerL;
+}
+
+/**
+ * @fn InvertedPendulumControl::GetGyroOffsetX()
+ * @brief Gyro_Xのオフセットを取得
+ * @param (void) void
+ * @return float
+ */
+float InvertedPendulumControl::GetGyroOffsetX(){
+  return gyroXoffset;
+}
+
+/**
+ * @fn InvertedPendulumControl::GetGyroOffsetY()
+ * @brief Gyro_Yのオフセットを取得
+ * @param (void) void
+ * @return float
+ */
+float InvertedPendulumControl::GetGyroOffsetY(){
+  return gyroYoffset;
+}
+
+/**
+ * @fn IInvertedPendulumControl::GetGyroOffsetZ()
+ * @brief Gyro_Zのオフセットを取得
+ * @param (void) void
+ * @return float
+ */
+float InvertedPendulumControl::GetGyroOffsetZ(){
+  return gyroZoffset;
+}
+
+/**
+ * @fn InvertedPendulumControl::GetAccOffsetX()
+ * @brief Acc_Xのオフセットを取得
+ * @param (void) void
+ * @return float
+ */
+float InvertedPendulumControl::GetAccOffsetX(){
+  return accXoffset;
+}
+
+/**
+ * @fn InvertedPendulumControl::GetGyroX()
+ * @brief Gyro_Xの値を取得
+ * @param (void) void
+ * @return float
+ */
+float InvertedPendulumControl::GetGyroX(){
+  return gyroXdata;
+}
+
+/**
+ * @fn InvertedPendulumControl::GetGyroY()
+ * @brief Gyro_Yの値を取得
+ * @param (void) void
+ * @return float
+ */
+float InvertedPendulumControl::GetGyroY(){
+  return gyroYdata;
+}
+
+/**
+ * @fn InvertedPendulumControl::GetGyroZ()
+ * @brief Gyro_Zの値を取得
+ * @param (void) void
+ * @return float
+ */
+float InvertedPendulumControl::GetGyroZ(){
+  return gyroZdata;
+}
+
+/**
+ * @fn InvertedPendulumControl::GetAccX()
+ * @brief ACC_Xの値を取得
+ * @param (void) void
+ * @return float
+ */
+float InvertedPendulumControl::GetAccX(){
+  return accXdata;
+}
+
+/**
+ * @fn InvertedPendulumControl::GetAccY()
+ * @brief ACC_Yの値を取得
+ * @param (void) void
+ * @return float
+ */
+float InvertedPendulumControl::GetAccY(){
+  return accZdata;
+}
+
+/**
+ * @fn InvertedPendulumControl::GetAccZ()
+ * @brief ACC_Zの値を取得
+ * @param (void) void
+ * @return float
+ */
+float InvertedPendulumControl::GetAveAccZ(){
+  return aveAccZ;
+}
+
+/**
+ * @fn InvertedPendulumControl::GetAveAbsOmg()
+ * @brief 平均角速度の絶対値を取得
+ * @param (void) void
+ * @return float
+ */
+float InvertedPendulumControl::GetAveAbsOmg(){
+  return aveAbsOmg;
+}
+
+/**
+ * @fn float InvertedPendulumControl::GetKeyInfo(const char key[])
+ * @brief 引数のkeyに対応した情報を返す
+ * @param (key) キー
+ * @return float
+ */
 float InvertedPendulumControl::GetKeyInfo(const char key[]){
   float data = 0.0;
   for (int i = 0; i < info_table_size; i++){
@@ -526,4 +649,217 @@ float InvertedPendulumControl::GetKeyInfo(const char key[]){
     }
   }
   return data;
+}
+
+/**
+ * @fn InvertedPendulumControl::GetInfo(char *buff, const int buff_size)
+ * @brief JSON形式で倒立制御の情報を取得する
+ * @param (buff) バッファ
+ * @param (buff_size) バッファサイズ
+ * @return int(0:OK, -1:Error)
+ */
+int InvertedPendulumControl::GetInfo(char *buff, const unsigned int buff_size){
+  //buffサイズのチェック
+  if( buff_size > JSON_CAPACITY ){
+    return -1;
+  }
+
+  //データの作成
+  for (int i = 0; i < info_table_size; i++){
+    doc[info_table[i].id] = (this->*info_table[i].func_ptr)();
+  }
+
+  //buffに格納
+  serializeJson(doc, buff, buff_size);
+  return 0;
+}
+
+/**
+ * @fn InvertedPendulumControl::SetInfo(char *json)
+ * @brief JSON形式の情報からパラメータを設定する
+ * @param (json) JSONデータ
+ * @return int(0:OK, -1:Error)
+ */
+void InvertedPendulumControl::SetInfo(char *json){
+  DeserializationError error = deserializeJson(m_readDoc, json);
+
+  if(error == DeserializationError::Ok){
+    OPERATION ope_type = m_readDoc["OPE_TYPE"];
+    for(int i = 0; i < set_table_size;i++){
+      // パラメータ設定
+      if( (set_table[i].ope == SET_PARAM) && (ope_type == SET_PARAM) ){
+        float value = m_readDoc[set_table[i].id];
+        (this->*set_table[i].func_ptr)( &value );
+        Serial.println(set_table[i].id);
+      
+      // Balacの操作
+      }else if( (set_table[i].ope == SET_OPE) && (ope_type == SET_OPE) ){
+        bool isEnabled = m_readDoc[set_table[i].id];
+        (this->*set_table[i].func_ptr)( &isEnabled );
+        Serial.println(set_table[i].id);
+        Serial.println(isEnabled);
+      }else{
+        // 処理なし
+      }
+    }
+  }else{
+    //Serial.print(F("deserializeJson() failed: "));
+    //Serial.println(error.c_str());
+  }
+}
+
+/**
+ * @fn InvertedPendulumControl::SetKang()
+ * @brief Kangに値を設定する
+ * @param (void*) pValue
+ * @return void
+ */
+void InvertedPendulumControl::SetKang(void *pValue){
+  Kang = *(float*)pValue;
+}
+
+/**
+ * @fn InvertedPendulumControl::SetKomg()
+ * @brief Komgに値を設定する
+ * @param (void*) pValue
+ * @return void
+ */
+void InvertedPendulumControl::SetKomg(void *pValue){
+  Komg = *(float*)pValue;
+}
+
+/**
+ * @fn InvertedPendulumControl::SetKIang()
+ * @brief KIangに値を設定する
+ * @param (void*) pValue
+ * @return void
+ */
+void InvertedPendulumControl::SetKIang(void *pValue){
+  KIang = *(float*)pValue;
+}
+
+/**
+ * @fn InvertedPendulumControl::SetKKyaw()
+ * @brief Kyawに値を設定する
+ * @param (void*) pValue
+ * @return void
+ */
+void InvertedPendulumControl::SetKyaw(void *pValue){
+  Kyaw = *(float*)pValue;
+}
+
+/**
+ * @fn InvertedPendulumControl::SetKdst()
+ * @brief Kdstに値を設定する
+ * @param (void*) pValue
+ * @return void
+ */
+void InvertedPendulumControl::SetKdst(void *pValue){
+  Kdst = *(float*)pValue;
+}
+
+/**
+ * @fn InvertedPendulumControl::SetKpsd()
+ * @brief Kspdに値を設定する
+ * @param (void*) pValue
+ * @return void
+ */
+void InvertedPendulumControl::SetKspd(void *pValue){
+  Kspd = *(float*)pValue;
+}
+
+/**
+ * @fn InvertedPendulumControl::SetKspin()
+ * @brief Kspin(旋回角度調整用パラメータ)に値を設定する
+ * @param (void*) pValue
+ * @return void
+ */
+void InvertedPendulumControl::SetKspin(void *pValue){
+  Kspin = *(float*)pValue;
+}
+
+/**
+ * @fn InvertedPendulumControl::SetTurnRight()
+ * @brief 右旋回設定にする
+ * @param (void*) pValue
+ * @return void
+ */
+void InvertedPendulumControl::SetTurnRight(void *pValue){
+  bool isEnabled = *(bool*)pValue;
+
+  if(isEnabled){  //右旋回
+    //moveRate=1.0;
+    spinContinuous=true;
+    spinStep=-Kspin*clk;
+  }else{
+    //何もしない
+  }
+}
+
+/**
+ * @fn InvertedPendulumControl::SetTurnLeft()
+ * @brief 左旋回設定にする
+ * @param (void*) pValue
+ * @return void
+ */
+void InvertedPendulumControl::SetTurnLeft(void *pValue){
+  bool isEnabled = *(bool*)pValue;
+
+  if(isEnabled){  //左旋回
+    //moveRate=1.0;
+    spinContinuous=true;
+    spinStep=Kspin*clk;
+  }else{
+    //何もしない
+  }
+}
+
+/**
+ * @fn InvertedPendulumControl::SetFoward()
+ * @brief 前進設定にする
+ * @param (void*) pValue
+ * @return void
+ */
+void InvertedPendulumControl::SetFoward(void *pValue){
+  bool isEnabled = *(bool*)pValue;
+
+  if(isEnabled){  //前進
+    moveRate=-2.5;
+  }else{
+    //何もしない
+  }
+}
+
+/**
+ * @fn InvertedPendulumControl::SetBackward()
+ * @brief 後退設定にする
+ * @param (void*) pValue
+ * @return void
+ */
+void InvertedPendulumControl::SetBackward(void *pValue){
+  bool isEnabled = *(bool*)pValue;
+
+  if(isEnabled){  //後退
+    moveRate=2.5;
+  }else{
+    //何もしない
+  }
+}
+
+/**
+ * @fn InvertedPendulumControl::SetStand()
+ * @brief 倒立設定にする
+ * @param (void*) pValue
+ * @return void
+ */
+void InvertedPendulumControl::SetStand(void *pValue){
+  bool isEnabled = *(bool*)pValue;
+
+  if(isEnabled){  //倒立制御
+    moveRate=0.0;
+    spinContinuous=false;
+    spinStep=0;
+  }else{
+    //何もしない
+  }
 }
