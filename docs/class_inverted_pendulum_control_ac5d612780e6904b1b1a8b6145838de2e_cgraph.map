@@ -1,0 +1,5 @@
+<map id="InvertedPendulumControl::calib1" name="InvertedPendulumControl::calib1">
+<area shape="rect" id="node1" title="ジャイロセンサ(Y軸)のオフセットを算出する" alt="" coords="5,39,175,80"/>
+<area shape="rect" id="node2" href="$class_inverted_pendulum_control.html#ae124c36d68bc1f9bc8829105ce1bb1c9" title=" " alt="" coords="223,5,392,47"/>
+<area shape="rect" id="node3" href="$class_inverted_pendulum_control.html#a8f67fed2654b39c3a50294d900fbf9d2" title="ジャイロセンサ、加速度センサから値を取得する 加速度センサ：ローカル座標からグローバル座標に変換している(M5StickCが地面と垂直状態のとき上方向をz,全身方向をx)" alt="" coords="223,71,392,112"/>
+</map>

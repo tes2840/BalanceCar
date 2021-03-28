@@ -1,0 +1,5 @@
+<map id="InvertedPendulumControl::calDelay" name="InvertedPendulumControl::calDelay">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,175,47"/>
+<area shape="rect" id="node2" href="$class_inverted_pendulum_control.html#ab335d9077a50a22ee614703c4c81b88a" title="ジャイロセンサから角速度を取得し角度を推定する" alt="" coords="223,5,392,47"/>
+<area shape="rect" id="node3" href="$class_inverted_pendulum_control.html#a8f67fed2654b39c3a50294d900fbf9d2" title="ジャイロセンサ、加速度センサから値を取得する 加速度センサ：ローカル座標からグローバル座標に変換している(M5StickCが地面と垂直状態のとき上方向をz,全身方向をx)" alt="" coords="440,5,609,47"/>
+</map>

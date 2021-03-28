@@ -1,0 +1,6 @@
+<map id="InvertedPendulumControl::drive" name="InvertedPendulumControl::drive">
+<area shape="rect" id="node1" title="モーター制御" alt="" coords="5,39,175,80"/>
+<area shape="rect" id="node2" href="$class_inverted_pendulum_control.html#a973f448a066d4d6d75e57da5670ae3fd" title="MotorLを回転させる(回転角は&#45;127~127の範囲内に制限する)" alt="" coords="223,5,392,47"/>
+<area shape="rect" id="node4" href="$class_inverted_pendulum_control.html#acf99a35cdbbb53db4c0cf7d024206605" title="MotorRを回転させる(回転角は&#45;127~127の範囲内に制限する)" alt="" coords="223,71,392,112"/>
+<area shape="rect" id="node3" href="$class_inverted_pendulum_control.html#a1b5b3f396e062a3ddd6dcd5f369b1f49" title="I2C通信でモータドライバ(L9110S)にデータを転送する" alt="" coords="440,39,609,80"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="InvertedPendulumControl::calib2" name="InvertedPendulumControl::calib2">
+<area shape="rect" id="node1" title="倒立状態でのジャイロセンサ(Z軸)、加速度センサ(X軸)のオフセットを算出する" alt="" coords="5,104,175,145"/>
+<area shape="rect" id="node2" href="$class_inverted_pendulum_control.html#ae124c36d68bc1f9bc8829105ce1bb1c9" title=" " alt="" coords="223,5,392,47"/>
+<area shape="rect" id="node3" href="$class_inverted_pendulum_control.html#a8f67fed2654b39c3a50294d900fbf9d2" title="ジャイロセンサ、加速度センサから値を取得する 加速度センサ：ローカル座標からグローバル座標に変換している(M5StickCが地面と垂直状態のとき上方向をz,全身方向をx)" alt="" coords="223,71,392,112"/>
+<area shape="rect" id="node4" href="$class_inverted_pendulum_control.html#aa81f126cee8f282d1490dd09c1277d7d" title="モーターの初期化" alt="" coords="223,136,392,177"/>
+<area shape="rect" id="node8" href="$class_inverted_pendulum_control.html#a38c5294cef8536d4d53f6cde34dc55ef" title="内部ステータスの初期化" alt="" coords="223,201,392,243"/>
+<area shape="rect" id="node5" href="$class_inverted_pendulum_control.html#a973f448a066d4d6d75e57da5670ae3fd" title="MotorLを回転させる(回転角は&#45;127~127の範囲内に制限する)" alt="" coords="440,104,609,145"/>
+<area shape="rect" id="node7" href="$class_inverted_pendulum_control.html#acf99a35cdbbb53db4c0cf7d024206605" title="MotorRを回転させる(回転角は&#45;127~127の範囲内に制限する)" alt="" coords="440,169,609,211"/>
+<area shape="rect" id="node6" href="$class_inverted_pendulum_control.html#a1b5b3f396e062a3ddd6dcd5f369b1f49" title="I2C通信でモータドライバ(L9110S)にデータを転送する" alt="" coords="657,137,827,179"/>
+</map>

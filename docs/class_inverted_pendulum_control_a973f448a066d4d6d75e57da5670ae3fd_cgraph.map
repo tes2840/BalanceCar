@@ -1,0 +1,4 @@
+<map id="InvertedPendulumControl::drvMotorL" name="InvertedPendulumControl::drvMotorL">
+<area shape="rect" id="node1" title="MotorLを回転させる(回転角は&#45;127~127の範囲内に制限する)" alt="" coords="5,5,175,47"/>
+<area shape="rect" id="node2" href="$class_inverted_pendulum_control.html#a1b5b3f396e062a3ddd6dcd5f369b1f49" title="I2C通信でモータドライバ(L9110S)にデータを転送する" alt="" coords="223,5,392,47"/>
+</map>

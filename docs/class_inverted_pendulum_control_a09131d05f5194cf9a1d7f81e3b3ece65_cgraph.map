@@ -1,0 +1,14 @@
+<map id="InvertedPendulumControl::InvertedPendulumControl" name="InvertedPendulumControl::InvertedPendulumControl">
+<area shape="rect" id="node1" title="InvertedPendulumControlのコンストラクタ" alt="" coords="5,217,183,259"/>
+<area shape="rect" id="node2" href="$class_inverted_pendulum_control.html#ac5d612780e6904b1b1a8b6145838de2e" title="ジャイロセンサ(Y軸)のオフセットを算出する" alt="" coords="231,53,400,95"/>
+<area shape="rect" id="node5" href="$class_inverted_pendulum_control.html#a8250b9834d1fd9d67996c8e786199f67" title="IMU(SH200Q）の初期化" alt="" coords="231,119,400,160"/>
+<area shape="rect" id="node6" href="$class_inverted_pendulum_control.html#aa81f126cee8f282d1490dd09c1277d7d" title="モーターの初期化" alt="" coords="231,184,400,225"/>
+<area shape="rect" id="node10" href="$class_inverted_pendulum_control.html#a284da89a16493133e994b246b58a1adc" title="パラメータの初期化" alt="" coords="231,249,400,291"/>
+<area shape="rect" id="node11" href="$class_inverted_pendulum_control.html#a38c5294cef8536d4d53f6cde34dc55ef" title="内部ステータスの初期化" alt="" coords="231,315,400,356"/>
+<area shape="rect" id="node12" href="$class_inverted_pendulum_control.html#af90944a9288915917b391027f3859a71" title="Mode選択" alt="" coords="231,380,400,421"/>
+<area shape="rect" id="node3" href="$class_inverted_pendulum_control.html#ae124c36d68bc1f9bc8829105ce1bb1c9" title=" " alt="" coords="448,5,617,47"/>
+<area shape="rect" id="node4" href="$class_inverted_pendulum_control.html#a8f67fed2654b39c3a50294d900fbf9d2" title="ジャイロセンサ、加速度センサから値を取得する 加速度センサ：ローカル座標からグローバル座標に変換している(M5StickCが地面と垂直状態のとき上方向をz,全身方向をx)" alt="" coords="448,71,617,112"/>
+<area shape="rect" id="node7" href="$class_inverted_pendulum_control.html#a973f448a066d4d6d75e57da5670ae3fd" title="MotorLを回転させる(回転角は&#45;127~127の範囲内に制限する)" alt="" coords="448,152,617,193"/>
+<area shape="rect" id="node9" href="$class_inverted_pendulum_control.html#acf99a35cdbbb53db4c0cf7d024206605" title="MotorRを回転させる(回転角は&#45;127~127の範囲内に制限する)" alt="" coords="448,217,617,259"/>
+<area shape="rect" id="node8" href="$class_inverted_pendulum_control.html#a1b5b3f396e062a3ddd6dcd5f369b1f49" title="I2C通信でモータドライバ(L9110S)にデータを転送する" alt="" coords="665,185,835,227"/>
+</map>

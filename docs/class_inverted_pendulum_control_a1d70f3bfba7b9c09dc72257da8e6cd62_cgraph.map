@@ -1,0 +1,7 @@
+<map id="InvertedPendulumControl::checkButtonP" name="InvertedPendulumControl::checkButtonP">
+<area shape="rect" id="node1" title="Powerボタン押下を確認しモードの切り替えを行う" alt="" coords="5,71,175,112"/>
+<area shape="rect" id="node2" href="$class_inverted_pendulum_control.html#ac5d612780e6904b1b1a8b6145838de2e" title="ジャイロセンサ(Y軸)のオフセットを算出する" alt="" coords="223,37,392,79"/>
+<area shape="rect" id="node5" href="$class_inverted_pendulum_control.html#af90944a9288915917b391027f3859a71" title="Mode選択" alt="" coords="223,103,392,144"/>
+<area shape="rect" id="node3" href="$class_inverted_pendulum_control.html#ae124c36d68bc1f9bc8829105ce1bb1c9" title=" " alt="" coords="440,5,609,47"/>
+<area shape="rect" id="node4" href="$class_inverted_pendulum_control.html#a8f67fed2654b39c3a50294d900fbf9d2" title="ジャイロセンサ、加速度センサから値を取得する 加速度センサ：ローカル座標からグローバル座標に変換している(M5StickCが地面と垂直状態のとき上方向をz,全身方向をx)" alt="" coords="440,71,609,112"/>
+</map>

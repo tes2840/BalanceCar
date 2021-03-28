@@ -1,0 +1,11 @@
+<map id="InvertedPendulumControl::readGyro" name="InvertedPendulumControl::readGyro">
+<area shape="rect" id="node1" title="ジャイロセンサ、加速度センサから値を取得する 加速度センサ：ローカル座標からグローバル座標に変換している(M5StickCが地面と垂直状態のとき上方向をz,全身方向をx)" alt="" coords="785,129,955,171"/>
+<area shape="rect" id="node2" href="$class_inverted_pendulum_control.html#ac5d612780e6904b1b1a8b6145838de2e" title="ジャイロセンサ(Y軸)のオフセットを算出する" alt="" coords="568,64,737,105"/>
+<area shape="rect" id="node7" href="$class_inverted_pendulum_control.html#aa79b3eb7e6a62e5ca8772090360f0b37" title="倒立状態でのジャイロセンサ(Z軸)、加速度センサ(X軸)のオフセットを算出する" alt="" coords="568,129,737,171"/>
+<area shape="rect" id="node8" href="$class_inverted_pendulum_control.html#ab335d9077a50a22ee614703c4c81b88a" title="ジャイロセンサから角速度を取得し角度を推定する" alt="" coords="568,195,737,236"/>
+<area shape="rect" id="node3" href="$class_inverted_pendulum_control.html#a1d70f3bfba7b9c09dc72257da8e6cd62" title="Powerボタン押下を確認しモードの切り替えを行う" alt="" coords="347,5,516,47"/>
+<area shape="rect" id="node6" href="$class_inverted_pendulum_control.html#a09131d05f5194cf9a1d7f81e3b3ece65" title="InvertedPendulumControlのコンストラクタ" alt="" coords="343,71,520,112"/>
+<area shape="rect" id="node4" href="$class_inverted_pendulum_control.html#a9412261392062103a96d5aae6951e617" title="InvertedPendulumControlのメイン処理" alt="" coords="100,137,295,163"/>
+<area shape="rect" id="node5" href="$_balance_car_8ino.html#afe461d27b9c48d5921c00d521181f12f" title="メイン処理" alt="" coords="5,137,52,163"/>
+<area shape="rect" id="node9" href="$class_inverted_pendulum_control.html#ab9cb53e7f7ac63c8b2011254a91f49d7" title=" " alt="" coords="347,239,516,280"/>
+</map>

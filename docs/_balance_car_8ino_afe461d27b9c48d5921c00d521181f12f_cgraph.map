@@ -1,0 +1,25 @@
+<map id="loop" name="loop">
+<area shape="rect" id="node1" title="メイン処理" alt="" coords="5,473,52,499"/>
+<area shape="rect" id="node2" href="$class_inverted_pendulum_control.html#a9412261392062103a96d5aae6951e617" title="InvertedPendulumControlのメイン処理" alt="" coords="100,297,295,323"/>
+<area shape="rect" id="node19" href="$_balance_car_8ino.html#a62d08aadd1bcf30936f37705e85d85c7" title=" " alt="" coords="156,647,239,674"/>
+<area shape="rect" id="node3" href="$class_inverted_pendulum_control.html#aa79b3eb7e6a62e5ca8772090360f0b37" title="倒立状態でのジャイロセンサ(Z軸)、加速度センサ(X軸)のオフセットを算出する" alt="" coords="343,289,512,331"/>
+<area shape="rect" id="node6" href="$class_inverted_pendulum_control.html#aa81f126cee8f282d1490dd09c1277d7d" title="モーターの初期化" alt="" coords="560,165,729,207"/>
+<area shape="rect" id="node10" href="$class_inverted_pendulum_control.html#a38c5294cef8536d4d53f6cde34dc55ef" title="内部ステータスの初期化" alt="" coords="560,399,729,440"/>
+<area shape="rect" id="node11" href="$class_inverted_pendulum_control.html#a1d70f3bfba7b9c09dc72257da8e6cd62" title="Powerボタン押下を確認しモードの切り替えを行う" alt="" coords="343,472,512,513"/>
+<area shape="rect" id="node13" href="$class_inverted_pendulum_control.html#af90944a9288915917b391027f3859a71" title="Mode選択" alt="" coords="560,529,729,571"/>
+<area shape="rect" id="node14" href="$class_inverted_pendulum_control.html#a479da214b8cd51da955129a437d94d7a" title="DisplayにM5StickCの電圧を表示" alt="" coords="343,407,512,448"/>
+<area shape="rect" id="node15" href="$class_inverted_pendulum_control.html#a9e493b8986656f99df6a742a5bb22564" title="モーター制御" alt="" coords="560,100,729,141"/>
+<area shape="rect" id="node16" href="$class_inverted_pendulum_control.html#ab335d9077a50a22ee614703c4c81b88a" title="ジャイロセンサから角速度を取得し角度を推定する" alt="" coords="560,231,729,272"/>
+<area shape="rect" id="node17" href="$class_inverted_pendulum_control.html#a1c33b29eb672a1a8aafad248d3b23f4c" title=" " alt="" coords="343,5,512,47"/>
+<area shape="rect" id="node18" href="$class_inverted_pendulum_control.html#a27596a552a5a8381f31670f875912b3b" title="デモモードの開始" alt="" coords="343,71,512,112"/>
+<area shape="rect" id="node4" href="$class_inverted_pendulum_control.html#ae124c36d68bc1f9bc8829105ce1bb1c9" title=" " alt="" coords="777,409,947,451"/>
+<area shape="rect" id="node5" href="$class_inverted_pendulum_control.html#a8f67fed2654b39c3a50294d900fbf9d2" title="ジャイロセンサ、加速度センサから値を取得する 加速度センサ：ローカル座標からグローバル座標に変換している(M5StickCが地面と垂直状態のとき上方向をz,全身方向をx)" alt="" coords="777,289,947,331"/>
+<area shape="rect" id="node7" href="$class_inverted_pendulum_control.html#a973f448a066d4d6d75e57da5670ae3fd" title="MotorLを回転させる(回転角は&#45;127~127の範囲内に制限する)" alt="" coords="777,100,947,141"/>
+<area shape="rect" id="node9" href="$class_inverted_pendulum_control.html#acf99a35cdbbb53db4c0cf7d024206605" title="MotorRを回転させる(回転角は&#45;127~127の範囲内に制限する)" alt="" coords="777,165,947,207"/>
+<area shape="rect" id="node8" href="$class_inverted_pendulum_control.html#a1b5b3f396e062a3ddd6dcd5f369b1f49" title="I2C通信でモータドライバ(L9110S)にデータを転送する" alt="" coords="995,133,1164,175"/>
+<area shape="rect" id="node12" href="$class_inverted_pendulum_control.html#ac5d612780e6904b1b1a8b6145838de2e" title="ジャイロセンサ(Y軸)のオフセットを算出する" alt="" coords="560,464,729,505"/>
+<area shape="rect" id="node20" href="$class_inverted_pendulum_control.html#aae5317037d4965d325ed822eb58ddf99" title="JSON形式で倒立制御の情報を取得する" alt="" coords="343,705,512,747"/>
+<area shape="rect" id="node21" href="$class_network.html#a3f284fb5a026e93ed5e3518120a41c7c" title=" " alt="" coords="343,771,511,798"/>
+<area shape="rect" id="node22" href="$class_network.html#a61a1fc9a9cba059f01e3c25e6409d7e2" title=" " alt="" coords="352,589,503,615"/>
+<area shape="rect" id="node23" href="$class_inverted_pendulum_control.html#a94954b9e954a4cbf3ece1a890802e03c" title="JSON形式の情報からパラメータを設定する" alt="" coords="343,640,512,681"/>
+</map>
